@@ -3,6 +3,12 @@ import { signup } from "../api/auth.js";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+import TextField from '@mui/material/TextField';
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+
 function Signup(){
     const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
@@ -27,26 +33,26 @@ function Signup(){
 
     return(
         <>
-        <form onSubmit={signupSubmitHandler}>
-            <label htmlFor="username">Username: </label>
-            <input type="email" name="username" id="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
-            <br />
-            <label htmlFor="password">Password: </label>
-            <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-            <br />
-            <label htmlFor="confirmPassword">Confirm Password: </label>
-            <input type="password" name="confirmPassword" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
-            <br />
-            <label htmlFor="name">Name: </label>
-            <input type="text" name="name" id="name" value={name} onChange={(e) => setName(e.target.value)}/>
-            <br />
+            <Box component="form"onSubmit={signupSubmitHandler} sx={{ maxWidth: 450, mx: "auto", mt: 8 }}>
+                <Paper elevation={10} sx={{ display: "flex", flexDirection: "column", gap: 2, p: 6, borderRadius: 5 }}>
+                    <Box>
+                        <Typography variant="h5" color="primary">Talk It Out</Typography>
+                        <Typography variant="body2" sx={{ mt: 0.5 }}>Create account to start expressing</Typography>
+                    </Box>
 
-            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-            <button type="submit">Sign Up</button>
-            <p>Already have an account? 
-                <Link to = "/login">Log in</Link>
-            </p>
-        </form>
+                    <TextField label="Username" variant="outlined" type="email" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    <TextField label="Name" type="text" variant="outlined" value={name} onChange={(e) => setName(e.target.value)}/>
+                    <TextField label="Password" type="password" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <TextField label="Confirm Password" type="password" variant="outlined" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+
+                    {errorMessage && <Typography color="error">{errorMessage}</Typography>}
+                    <Button variant="outlined" type="submit">Sign up</Button>
+                    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                        <Typography variant="body2">Already have an account?</Typography>
+                        <Button component={Link} to="/login" variant="outlined">Login</Button>
+                    </Box>
+                </Paper>
+            </Box>
         </>
     )
 }
