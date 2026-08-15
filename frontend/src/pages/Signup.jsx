@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { signup } from "../api/auth.js";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Signup(){
     const [ username, setUsername ] = useState("");
@@ -42,6 +43,9 @@ function Signup(){
 
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
             <button type="submit">Sign Up</button>
+            <p>Already have an account? 
+                <Link to = "/login">Log in</Link>
+            </p>
         </form>
         </>
     )

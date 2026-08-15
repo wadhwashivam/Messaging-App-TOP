@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Login(){
     const [ username, setUsername ] = useState("");
@@ -34,6 +35,9 @@ function Login(){
 
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
             <button type="submit">Login</button>
+            <p>Don't have an account?
+                <Link to = "/signup">Sign up</Link>
+            </p>
         </form>
         </>
     )
