@@ -15,7 +15,8 @@ async function apiRequest(endpoint, options = {}) {
 
   if (!response.ok) {
     const errorData = await response.json();
-    throw new Error(errorData.message || 'API request failed');
+    const message = errorData.message || errorData.errors?.[0]?.msg || 'API request failed';
+    throw new Error(message);
   }
   if (response.status === 204) {
     return null; // No content to return

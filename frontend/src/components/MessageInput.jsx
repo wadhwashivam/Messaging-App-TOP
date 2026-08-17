@@ -1,5 +1,7 @@
 import { useState } from "react";
 import apiRequest from "../api/client";
+import { Typography, Box, TextField, IconButton } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 
 function MessageInput({ userId, onMessageSent }){
     const [ message, setMessage ] = useState("");
@@ -26,15 +28,16 @@ function MessageInput({ userId, onMessageSent }){
     }
 
     return(
-        <div>
-            <form onSubmit={sendingMessage}>
-                <input type="text" name = "message" id = "message" placeholder="Write message..." value={message} onChange={(e) => setMessage(e.target.value)}/>
-                <br />
-                {errorMessage && <p style={{ color: "red"}}>{errorMessage}</p>}
-                <button type="submit">Send</button>
-            </form>
-        </div>
-    )
+        <Box component="form" onSubmit={sendingMessage} sx={{ p: 2, bgcolor: "background.paper", borderTop: 1, borderColor: "divider", display: "flex", flexDirection: "column", gap: 0.5 }}>
+            {errorMessage && <Typography color="error" variant="caption">{errorMessage}</Typography>}
+            <Box sx={{ display: "flex", gap: 1.5, alignItems: "center"}}>
+                <TextField fullWidth size="small" placeholder="Type a message"  value={message} onChange={(e) => setMessage(e.target.value)} sx={{ "& .MuiOutlinedInput-root": { borderRadius: 6 } }} />
+                <IconButton color="primary" type="submit">
+                    <SendIcon />
+                </IconButton>
+            </Box>
+        </Box>
+    );
 }
 
 export default MessageInput;
