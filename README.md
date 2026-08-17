@@ -4,8 +4,8 @@ A full-stack, real-time-ish messaging application built as the final project for
 
 ## Live Demo
 
-- **Frontend:** _coming soon_
-- **Backend API:** _coming soon_
+- **Frontend:** https://messaging-app-top-1.onrender.com
+- **Backend API:** https://messaging-app-top.onrender.com
 
 ## Features
 
